@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<!-- esto es un comentario -->
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="number" name="resultado" value="{{resultado}}">
+                </td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="datos(this.textContent)">AC</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">+/-</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">%</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">/</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="datos(this.textContent)">7</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">7</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">9</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">X</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="datos(this.textContent)">4</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">5</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">6</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">-</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="datos(this.textContent)">1</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">2</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">3</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">+</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button style="width:100%" type="button" onclick="datos(this.textContent)">0</button></td>
+                <td><button type="button" onclick="datos(this.textContent)">.</button></td>
+                <td><button type="submit" onclick="document.forms[0].num2.value=document.forms[0].resultado.value">=</button></td>
+                <input type="hidden" name="num1">
+                <input type="hidden" name="num2">
+                <input type="hidden" name="operacion">
+            </tr>
+        </table>
+    </form>
+    <script>
+        function datos(valor){
+            var form = document.forms[0];
+            let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+            let operaciones = ['X', '/', '+', '-'];
+            if (numeros.includes(parseInt(valor))) {
+                form.resultado.value += valor;
+            }
+            else if (operaciones.includes(valor)) {
+                if (form.operacion.value != "") {
+                    form.num2.value = form.resultado.value;
+                }
+                else {
+                    form.num1.value = form.resultado.value;
+                }
+                form.operacion.value = valor;
+                form.resultado.value = "";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
