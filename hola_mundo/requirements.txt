@@ -1,0 +1,10 @@
+asgiref==3.7.2
+Django==5.0.2
+mysqlclient==2.2.4
+pillow==10.2.0
+pypng==0.20220715.0
+qrcode==7.4.2
+reportlab==4.0.7
+reportlab-qrcode==0.1.4
+sqlparse==0.4.4
+typing_extensions==4.9.0
